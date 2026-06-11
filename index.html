@@ -629,7 +629,15 @@
       <div class="audio-section">
         <span class="audio-label">🎵 鞠莉お嬢様からのメッセージ</span>
         <div class="audio-player-wrap">
-          <button class="play-btn" id="playBtn" type="button" aria-label="再生">▶</button>
+          <button class="play-btn" id="playBtn" type="button" aria-label="再生">
+  <svg id="iconPlay" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;fill:currentColor;stroke:none">
+    <polygon points="5,3 19,12 5,21"/>
+  </svg>
+  <svg id="iconPause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;fill:currentColor;stroke:none;display:none">
+    <rect x="6" y="4" width="4" height="16"/>
+    <rect x="14" y="4" width="4" height="16"/>
+  </svg>
+</button>
           <div class="audio-controls">
             <div class="audio-title-text">Special Message from Mari</div>
             <div class="progress-bar-wrap" id="progressWrap">
@@ -800,11 +808,13 @@ toggleBtn.addEventListener('click', () => {
       if (isPlaying) {
         audio.pause();
         isPlaying = false;
-        playBtn.textContent = '▶';
+        document.getElementById('iconPlay').style.display = 'block';
+document.getElementById('iconPause').style.display = 'none';
       } else {
         audio.play().then(() => {
           isPlaying = true;
-          playBtn.textContent = '⏸';
+          document.getElementById('iconPlay').style.display = 'none';
+document.getElementById('iconPause').style.display = 'block';
         }).catch(() => {
           document.querySelector('.audio-note').textContent = '⚠️ 再生できません。ブラウザの設定をご確認ください。';
         });
